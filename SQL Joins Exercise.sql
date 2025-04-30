@@ -12,7 +12,7 @@ INNER JOIN categories on categories.CategoryID = products.CategoryID -- we use t
 WHERE categories.Name = 'Computers'; */ -- this is a sample of the above written code block, but without the use of aliases.
 
 /* joins: find all product names, product prices, and products ratings that have a rating of 5 */
-SELECT products.NAME, products.Price, reviews.Rating -- these represent the columns we'll be getting back. Right now, we don't any products that haven't been reviewed.
+SELECT products.NAME, products.Price, reviews.Rating -- these represent the columns we'll be getting back. Right now, we don't want any products that haven't been reviewed.
 FROM products -- I'm thinking that the product table would be the one located visually on the left per the LEFT command because we're utilizing the FROM command per the product table and the reviews table is being JOINED which I'm guessing means it would visually be the table joining in the products table from the right.
 INNER JOIN reviews ON reviews.ProductID = products.ProductID -- what do the reviews and product tables have in common? a product ID, so that's the column we want returned here.... which should ideally give us only the products which have been reviewed.
 WHERE reviews.rating = 5;
@@ -24,7 +24,7 @@ WHERE reviews.rating = 5;
 SELECT e.FirstName, e.LastName, Sum(s.Quantity) AS Total -- if code isn't running after compile time, especially if it's not necessarily selected, chances are that it has encountered a run time error but SQL won't tell you this explicitly unless you hgihlight and slect that chunk code you wish to test or run.
 FROM sales AS s -- you can join more than one table.... you could join 2 more tables if you wanted to.
 INNER JOIN employees AS e ON e.EmployeeID = s.EmployeeID -- need to utilize join command here because we need to figure out the employees who not only made sales, but made the most amount of sales.
-GROUP BY e.EmployeeID -- keeps the data organized by each individual employee.... we don't need to the sum sold by all of the employees. Does EmployeeID contain information for each employee's first name and last name?
+GROUP BY e.EmployeeID -- keeps the data organized by each individual employee.... we don't need to conduct the sum sold by all of the employees. Does EmployeeID contain information for each employee's first name and last name?
 ORDER BY Total DESC -- this works well here for what was initially asked, but we can take it a step further by way of utilizing a limit command to specify the top sales contenders based just on this list we've generated.
 LIMIT 2; -- displays the top 2 contenders of employees who sold the most product.
 
